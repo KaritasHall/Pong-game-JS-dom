@@ -1,0 +1,71 @@
+/*Color palette*/
+:root{
+    --foreground-color: tomato;
+    --background-color: pink;
+}
+
+
+
+body {
+    margin: 0;
+    background-color: var(--background-color);
+    overflow: hidden;
+}
+
+/* For the paddles I am using a variable for the "top" position so I can
+later manipulate it in js and make the paddles move. So the top position
+and the transform indicate the starting position*/
+.paddle {
+    --position: 50;
+    position: absolute;
+    background-color: var(--foreground-color);
+    width: 1vh;
+    height: 10vh;
+    top: calc(var(--position) * 1vh);
+    transform: translateY(-50%);
+}
+
+.paddle.left {
+    left: 1vw;
+}
+
+.paddle.right {
+    right: 1vw;
+}
+
+/* Making x and y variables for the ball so we can manipulate it with js. Again the numbers
+    here reflect the starting position, which is the center of the screen*/
+.ball {
+    --x: 50;
+    --y: 50;
+    position: absolute;
+    background-color: var(--foreground-color);
+    /*The calc(var) looks complicated but really we are just saying that vh and bw should be 50
+        but since I already made a variable, why not use it?*/
+    top: calc(var(--y) * 1vh);
+    left: calc(var(--x) * 1vw);
+    transform: translate(-50%, -50%);
+    width: 2.5vh;
+    height: 2.5vh;
+    border-radius: 50%;
+}
+
+/*Styling the look of the scores*/
+.score {
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 7vh;
+    color: var(--foreground-color);
+}
+
+#computer-score, #player-score {
+    padding: 0 2vh;
+    margin: 1vh 0;
+    opacity: .5;
+}
+/*Making sure that the player-score aligns to the right of the screen*/
+#player-score {
+    text-align: right;
+    border-right: .5vh solid var(--foreground-color);
+}
