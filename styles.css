@@ -1,16 +1,39 @@
 /*Color palette*/
 :root{
     --foreground-color: tomato;
-    --background-color: pink;
+    --background-gradient-1: linear-gradient(90deg, rgba(255,192,255,1) 0%, rgba(255,192,203,1) 35%, rgba(204,255,192,1) 100%);
+    --background-gradient-2: linear-gradient(90deg, rgba(204,255,192,1) 0%, rgba(255,192,203,1) 35%, rgba(255,192,255,1) 100%);
 }
 
 
 
 body {
     margin: 0;
-    background-color: var(--background-color);
     overflow: hidden;
 }
+
+/* Here I am playing around with animating a gradient to the background*/
+.backdrop {
+    position: absolute;
+    inset:0;
+}
+
+#backdrop1 {
+    background: var(--background-gradient-1);
+}
+
+#backdrop2 {
+    background: var(--background-gradient-2);
+    animation: animation-swirl 5s infinite;
+
+}
+
+@keyframes animation-swirl {
+    0%    { opacity: 0; }
+    50%   { opacity: 1; }
+    100%  { opacity: 0; }
+  }
+
 
 /* For the paddles I am using a variable for the "top" position so I can
 later manipulate it in js and make the paddles move. So the top position
@@ -40,8 +63,7 @@ and the transform indicate the starting position*/
     --y: 50;
     position: absolute;
     background-color: var(--foreground-color);
-    /*The calc(var) looks complicated but really we are just saying that vh and bw should be 50
-        but since I already made a variable, why not use it?*/
+    /*The calc(var) looks complicated but really we are just saying that vh and bw should be 50*/
     top: calc(var(--y) * 1vh);
     left: calc(var(--x) * 1vw);
     transform: translate(-50%, -50%);
@@ -57,6 +79,7 @@ and the transform indicate the starting position*/
     font-weight: bold;
     font-size: 7vh;
     color: var(--foreground-color);
+    padding-top: 20px;
 }
 
 #computer-score, #player-score {

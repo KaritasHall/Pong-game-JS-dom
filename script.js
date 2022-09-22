@@ -1,8 +1,9 @@
-import Paddle from "./paddle.js";
-import { ball } from "./ball.js";
 
-const playerPaddle = new Paddle(document.getElementById("player-paddle"))
-const computerPaddle = new Paddle(document.getElementById("computer-paddle"))
+import { ball } from "./ball.js";
+import { playerPaddle } from "./player-paddle.js";
+import { computerPaddle } from "./computer-paddle.js";
+
+
 const playerScoreElem = document.getElementById("player-score")
 const computerScoreElem = document.getElementById("computer-score")
 
@@ -52,7 +53,7 @@ function handleLose() {
 /* Here we have an event listener for the mousemove event which accepts a callback, this callback equates the position of
     the player paddle to the position of the mouse pointer on the y axis - allowing the player to move the paddle with their mouse*/
 document.addEventListener("mousemove", (mouseEvent) => {
-    playerPaddle.position = (mouseEvent.y / window.innerHeight) * 100
+    playerPaddle.setPosition((mouseEvent.y / window.innerHeight) * 100)
 })
 
 ball.reset()
